@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>d3</title>
+  </head>
+  <body>
+    <div class="d3">hello d3</div>
+    <div class="d3">hello d34</div>
+    <div class="myclass">hello 每一次鹿死谁手</div>
+    <ul id="list">
+      <li></li>
+      <li></li>
+    </ul>
+    <input type="button" name="remove" value="remove fourth value" onclick="remove()">
+
+    <!-- datum -->
+    <div class="datum"></div>
+    <div class="datum1"></div>
+    <svg id="line" width="400" height="400">
+      <line x1="100" y1="100" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:4"/>
+    </svg>
+    <svg width="100" height="100">
+      <rect x="10" y="20" width="20" height="10" fill="green">hello rect</rect>
+    </svg>
+    <svg>
+      <circle cx="50" cy="50" r="50" fill="green">this is 圆</circle>
+    </svg>
+    <svg width="200" height="200">
+      <ellipse cx="50" cy="50" rx="20" ry="40" fill="yellow"></ellipse>
+    </svg>
+    <svg width="200" height="200">
+      <g transform="translate(60, 60) rotate(30)">
+        <rect x="0" y="0" width="20" height="10" fill="red">hello rect</rect>
+        <circle cx="50" cy="50" r="50" fill="green">this is 圆</circle>
+      </g>
+    </svg>
+
+    <div class="line111"></div>
+    <div class="rect"></div>
+    <div class="circle"></div>
+    <div class="ellipse"></div>
+    <div class="transform"></div>
+  </body>
+  <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    console.log(d3.select("#list").selectAll('li').data([10,20,30,25,15]));
+      d3.select("#list").selectAll('li').data([10,20,30,25,15]).text(function(d) {
+        return d;
+      }).enter().append('li')
+      .text(function(d, i) {
+        console.log(d, i, this)
+        return d;
+      })
+      function remove () {
+        console.log(d3.select('#list').selectAll('li').data([[10]]).exit());
+        console.log(d3.select('#list').selectAll('li').data([[20]]).exit().remove())
+        d3.select('#list').selectAll('li').data([[10, 20, 30, 15]]).exit().remove();
+      }
+    // const { liArray }= require('../bin/data.js');
+    //console.log(d3.select('div').text()
+    // console.log(d3.selectAll('div'))
+    // d3.select('.d3').append('span');
+    // // d3.select(".myclass").html("Hello World! <span>from D3.js</span>");
+    // // d3.select('.myclass').classed('success');
+    // d3.selectAll('div').style('color', 'blue');
+
+   d3.select('.datum').datum(3000).text(function(d) {
+     return d
+   })
+   d3.select('.datum1').datum(5000).append('p').text(function(d) {
+     return d
+   })
+   d3.select('.datum1').datum(5000).append('span').text(function(d) {
+     return d
+   });
+   var width= 200;
+   var height=200;
+   var line = d3.select('.line111')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+   line.append('line')
+       .attr('x1', 10)
+       .attr('y1', 10)
+       .attr('x2', 100)
+       .attr('y2', 100)
+       .style('stroke', '#0084ff')
+       .style('stroke-width', 2);
+   var ract = d3.select('.rect')
+     .append('svg')
+     .attr('width', width)
+     .attr('height', 200);
+  ract.append('rect')
+      .attr('x', 10)
+      .attr('y', 10)
+      .attr('width', 100)
+      .attr('height', 100)
+      .attr('fill', '#999');
+
+var circle = d3.select('.circle')
+               .append('svg')
+               .attr('width', width)
+               .attr('height', height);
+circle.append('circle')
+      .attr('cx', 120)
+      .attr('cy', 60)
+      .attr('r', 50)
+      .attr('fill', 'blue');
+var circle = d3.select('.ellipse')
+               .append('svg')
+               .attr('width', width)
+               .attr('height', height);
+circle.append('ellipse')
+      .attr('cx', 120)
+      .attr('cy', 60)
+      .attr('rx', 60)
+      .attr('ry', 20)
+      .attr('fill', 'blue')
+var transform = d3.select('.transform')
+                  .append('svg')
+                  .attr('width', width)
+                  .attr('height', height);
+var g = transform.append('g')
+                 .attr('transform', 'translate(60, 60) rotate(30)');
+g.append('rect').attr('x', 10)
+      .attr('y', 10)
+      .attr('width', 100)
+      .attr('height', 100)
+      .attr('fill', '#999');
+g.append('circle')
+      .attr('cx', 120)
+      .attr('cy', 60)
+      .attr('r', 50)
+      .attr('fill', 'blue');
+
+      var t = d3.transition()
+   .duration(2000);
+d3.select('body').style('background-color', 'gray').transition(t).style('background-color', 'lightblue')
+  </script>
+</html>
