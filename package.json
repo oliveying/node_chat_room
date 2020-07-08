@@ -24,5 +24,7 @@
     "socket.io": "^2.3.0",
     "stream-combiner2": "^1.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "formidable": "^1.2.1"
+  }
 }

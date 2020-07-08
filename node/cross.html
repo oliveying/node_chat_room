@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cross domain</title>
+  </head>
+  <body>
+    hello this is cross xixixii
+    <script>
+      var sct = document.createElement('script');
+      sct.src='http://localhost:4000/hello?callback=callb'
+      document.body.appendChild(sct);
+      function callb(data) {
+        console.log(data)
+      }
+    </script>
+  </body>
+</html>
